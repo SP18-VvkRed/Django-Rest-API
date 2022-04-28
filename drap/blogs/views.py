@@ -15,7 +15,7 @@ from rest_framework.decorators import api_view
 @api_view(['GET', 'POST', 'DELETE'])
 def blog_list(request):
     if request.method == 'GET':
-        tutorials = Blog.objects.all()
+        blogs = Blog.objects.all()
         
         title = request.GET.get('title', None)
         if title is not None:
