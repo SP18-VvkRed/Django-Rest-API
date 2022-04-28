@@ -10,19 +10,20 @@ from blogs.serializers import BlogSerializer
 from rest_framework.decorators import api_view
 
 
+
 # Create your views here.
 
 @api_view(['GET', 'POST', 'DELETE'])
 def blog_list(request):
     if request.method == 'GET':
-        tutorials = Blog.objects.all()
+        blogs = Blog.objects.all()
         
         title = request.GET.get('title', None)
         if title is not None:
             blogs = blogs.filter(title__icontains=title)
-        
+
         blogs_serializer = BlogSerializer(blogs, many=True)
-        return JsonResponse(blogs_serializer.data, safe=False)
+        return JsonResponse(blogs_serializer.data, safe=False)  
 
     elif request.method == 'POST':
         blog_data = JSONParser().parse(request)
